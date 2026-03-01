@@ -43,13 +43,15 @@ def main():
         sys.exit(1)
 
     url = sys.argv[1]
+    if not url.startswith(("http://", "https://")):
+        url = "http://" + url
 
     html = http_req(url)
     title = urlTitle(html)
     body = bodyText(html)
     links = urlLinks(html)
 
-    print("\nPage Title:\n", title)
+    print("\nPage Title:", title)
     print("\nPage Body:\n")
     print(body)          # This will show whole text from body.
     # print(body[:5000])  # use this to see limited body text.
